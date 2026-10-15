@@ -1,0 +1,100 @@
+{
+  "name": "nerd-mssql-erd",
+  "displayName": "nERD - MSSQL ERD",
+  "description": "Visualize a SQL Server database project (.sqlproj) as an interactive ERD with tables, views, stored procedures and functions as layers.",
+  "version": "0.1.0",
+  "publisher": "tspannagel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tspannagel/nERD"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "erd",
+    "mssql",
+    "sql server",
+    "sqlproj",
+    "ssdt",
+    "database diagram"
+  ],
+  "icon": "media/icon.png",
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "workspaceContains:**/*.sqlproj"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "nerd.openErd",
+        "title": "Open ERD",
+        "category": "nERD",
+        "icon": "$(type-hierarchy)"
+      },
+      {
+        "command": "nerd.refresh",
+        "title": "Refresh ERD",
+        "category": "nERD"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "nerd.openErd",
+          "when": "resourceExtname == .sqlproj",
+          "group": "navigation@90"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "nerd.openErd",
+          "when": "resourceExtname == .sqlproj",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "nERD",
+      "properties": {
+        "nerd.defaultSchema": {
+          "type": "string",
+          "default": "dbo",
+          "description": "Schema assumed for unqualified object names."
+        },
+        "nerd.layout.direction": {
+          "type": "string",
+          "enum": ["RIGHT", "DOWN", "LEFT", "UP"],
+          "default": "RIGHT",
+          "description": "Direction of the automatic layered layout."
+        },
+        "nerd.startCollapsed": {
+          "type": "boolean",
+          "default": false,
+          "description": "Start with all objects collapsed to their header."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit -p . && tsc --noEmit -p webview",
+    "test": "node esbuild.mjs --tests && node --test dist-test/*.test.js",
+    "package": "node esbuild.mjs --production && vsce package --no-dependencies",
+    "vscode:prepublish": "node esbuild.mjs --production"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "1.90.0",
+    "@vscode/vsce": "^3.0.0",
+    "elkjs": "^0.9.3",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.0"
+  }
+}
