@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="24" fill="#1e2433"/>
+  <path d="M46 40 C 64 40, 64 64, 82 64 M46 40 C 64 40, 64 92, 82 92" fill="none" stroke="#94a3b8" stroke-width="3"/>
+  <g>
+    <rect x="12" y="22" width="40" height="40" rx="6" fill="#273043" stroke="#3b82f6" stroke-width="2"/>
+    <rect x="12" y="22" width="40" height="11" rx="6" fill="#3b82f6"/>
+    <rect x="12" y="28" width="40" height="5" fill="#3b82f6"/>
+    <rect x="18" y="39" width="22" height="3" rx="1.5" fill="#cbd5e1"/>
+    <rect x="18" y="47" width="28" height="3" rx="1.5" fill="#64748b"/>
+    <rect x="18" y="54" width="18" height="3" rx="1.5" fill="#64748b"/>
+  </g>
+  <g>
+    <rect x="76" y="50" width="40" height="26" rx="6" fill="#273043" stroke="#10b981" stroke-width="2"/>
+    <rect x="76" y="50" width="40" height="9" rx="6" fill="#10b981"/>
+    <rect x="76" y="55" width="40" height="4" fill="#10b981"/>
+    <rect x="82" y="65" width="24" height="3" rx="1.5" fill="#cbd5e1"/>
+  </g>
+  <g>
+    <rect x="76" y="84" width="40" height="22" rx="6" fill="#273043" stroke="#f59e0b" stroke-width="2"/>
+    <rect x="76" y="84" width="40" height="9" rx="6" fill="#f59e0b"/>
+    <rect x="76" y="89" width="40" height="4" fill="#f59e0b"/>
+    <rect x="82" y="98" width="20" height="3" rx="1.5" fill="#cbd5e1"/>
+  </g>
+  <text x="12" y="100" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-weight="700" font-size="21" fill="#e2e8f0">n<tspan fill="#3b82f6">ERD</tspan></text>
+</svg>
