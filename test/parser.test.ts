@@ -56,7 +56,7 @@ test('procedure parameters and function returns', () => {
     ['@c', 'BIGINT', true, undefined],
   ]);
   assert.equal(f.kind, 'function');
-  assert.equal(f.returns, 'DECIMAL(18, 2)');
+  assert.equal(f.returns, 'DECIMAL(18,2)');
 });
 
 test('sample project model', () => {

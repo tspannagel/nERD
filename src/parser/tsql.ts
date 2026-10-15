@@ -87,11 +87,6 @@ class Parser {
   private is(u: string, o = 0) { return this.toks[this.i + o]?.u === u; }
   private isP(v: string, o = 0) { const t = this.toks[this.i + o]; return !!t && t.t === 'punct' && t.v === v; }
 
-  private expectP(v: string) {
-    if (!this.isP(v)) throw new Error(`expected '${v}' near '${this.peek()?.v ?? 'EOF'}'`);
-    this.i++;
-  }
-
   /** Multi-part name: a.b.c (empty parts allowed, e.g. db..obj). */
   private name(): string[] {
     const parts: string[] = [];
@@ -282,7 +277,7 @@ class Parser {
       else break;
     }
     if (k < e && t[k].t === 'punct' && t[k].v === '(') k = this.closeParen(k) + 1;
-    col.type = this.text(typeStart, k).replace(/\s*\(\s*/g, '(').replace(/\s*,\s*/g, ',').replace(/\s*\)/g, ')');
+    col.type = normType(this.text(typeStart, k));
 
     while (k < e) {
       const u = t[k].u;
@@ -429,7 +424,7 @@ class Parser {
             if (this.isP('.')) this.i++; else break;
           }
           if (this.isP('(')) this.i = this.closeParen(this.i) + 1;
-          obj.returns = this.text(s, this.i);
+          obj.returns = normType(this.text(s, this.i));
         }
       }
     }
@@ -603,6 +598,11 @@ function markPk(cols: Column[], pk: string[]) {
     const c = cols.find((c) => eq(c.name, name));
     if (c) { c.isPrimaryKey = true; c.nullable = false; }
   }
+}
+
+/** `DECIMAL (18, 2)` → `DECIMAL(18,2)` */
+function normType(t: string): string {
+  return t.replace(/\s*\(\s*/g, '(').replace(/\s*,\s*/g, ',').replace(/\s*\)/g, ')');
 }
 
 function eq(a: string, b: string) { return a.toLowerCase() === b.toLowerCase(); }

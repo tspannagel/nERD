@@ -18,6 +18,7 @@ const builds = [
     outfile: 'dist/webview.js',
     platform: 'browser',
     format: 'iife',
+    loader: { '.css': 'text' },
   },
 ];
 
